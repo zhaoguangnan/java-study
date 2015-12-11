@@ -8,31 +8,13 @@ package org.java.study.thread;
  */
 public class ThreadInvisible {
 
-    private static class ReadThread extends Thread {
-        private boolean ready;
-        private int number;
-
-        @Override
-        public void run() {
-            while(!ready){
-                number++;
-            }
-
-            System.out.println(ready);
-        }
-
-        public void readyOn(){
-            this.ready = true;
-        }
-    }
-
-
     public static void main(String[] args) throws InterruptedException {
         ReadThread readThread = new ReadThread();
 //        readThread.setDaemon(true);
         readThread.start();
         Thread.sleep(200);
-        readThread.readyOn();
-        System.out.println(readThread.ready);
+        readThread.readyObjOn();
+//        readThread.readyOn();
+        System.out.println(readThread.getReadyObj().isReady());
     }
 }
